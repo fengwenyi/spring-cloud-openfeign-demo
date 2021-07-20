@@ -1,8 +1,10 @@
 package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.controller;
 
 import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service.IOrderService;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderRequestVo;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderResponseVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderController {
 
+    @Autowired
+    private IOrderService orderService;
+
     @PostMapping("/create")
     public ResultTemplate<CreateOrderResponseVo> create(@RequestBody @Validated CreateOrderRequestVo requestVo) {
-        return null;
+        return orderService.create(requestVo);
     }
 
 }
