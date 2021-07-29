@@ -2,12 +2,13 @@ package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service.impl;
 
 import com.fengwenyi.api.result.ResultTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
-import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsFeignClient;
+import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsClient;
+import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsClientApi;
+import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsClientWithFactory;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service.IOrderService;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderRequestVo;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderResponseVo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,13 +19,16 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class OrderServiceImpl implements IOrderService {
 
-    @Autowired
-    private IGoodsFeignClient goodsFeignClient;
+    private final IGoodsClientWithFactory goodsClient;
+
+    public OrderServiceImpl(IGoodsClientWithFactory goodsClient) {
+        this.goodsClient = goodsClient;
+    }
 
     @Override
     public ResultTemplate<CreateOrderResponseVo> create(CreateOrderRequestVo requestVo) {
 
-        ResultTemplate<GoodsResponseVo> goodsResult = goodsFeignClient.get(requestVo.getGoodsId());
+        ResultTemplate<GoodsResponseVo> goodsResult = goodsClient.get(requestVo.getGoodsId());
         log.info(goodsResult.toString());
 
         return ResultTemplate.success();

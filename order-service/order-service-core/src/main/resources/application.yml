@@ -3,9 +3,26 @@ server:
 
 spring:
   application:
-    name: spring-cloud-openfeign-demo-order-service
+    name: order-service
+  main:
+    allow-bean-definition-overriding: true
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+  okhttp:
+    enabled: true
+
+  httpclient:
+    connection-timeout: 10
+    connection-timer-repeat: 10
+  client:
+    refresh-enabled: true
+
+

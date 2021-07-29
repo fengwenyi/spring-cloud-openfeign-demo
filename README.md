@@ -70,3 +70,68 @@ public class OrderServiceImpl implements IOrderService {
     }
 }
 ```
+
+## fallback
+
+### fallback
+
+#### 不继承API
+
+```java
+@FeignClient(value = "goods-service", fallback = GoodsFallback.class)
+public interface IGoodsClient {
+
+    @GetMapping("/goods/{id}")
+    ResultTemplate<GoodsResponseVo> get(@PathVariable Integer id);
+
+}
+
+@Component
+class GoodsFallback implements IGoodsClient {
+    @Override
+    public ResultTemplate<GoodsResponseVo> get(Integer id) {
+        return ResultTemplate.fail(IReturnCode.Default.ERROR_SERVICE_CALL_EXCEPTION);
+    }
+}
+```
+
+#### 继承API
+
+```java
+@FeignClient(value = "goods-service", fallback = GoodsFallbackApi.class)
+public interface IGoodsClientApi extends IGoodsApi {
+}
+
+@Component
+@RequestMapping("/fallback")
+class GoodsFallbackApi implements IGoodsClientApi {
+    @Override
+    public ResultTemplate<GoodsResponseVo> get(Integer id) {
+        return ResultTemplate.fail(IReturnCode.Default.ERROR_SERVICE_CALL_EXCEPTION);
+    }
+}
+```
+
+### fallbackFactory
+
+```java
+@FeignClient(value = "goods-service", fallbackFactory = GoodsFallbackFactory.class)
+public interface IGoodsClientWithFactory extends IGoodsApi {
+}
+
+@Component
+class GoodsFallbackFactory implements FallbackFactory<GoodsFallbackWithFactory> {
+    @Override
+    public GoodsFallbackWithFactory create(Throwable cause) {
+        return new GoodsFallbackWithFactory();
+    }
+}
+
+class GoodsFallbackWithFactory implements IGoodsClientWithFactory {
+    @Override
+    public ResultTemplate<GoodsResponseVo> get(Integer id) {
+        return ResultTemplate.fail(IReturnCode.Default.ERROR_SERVICE_CALL_EXCEPTION);
+    }
+}
+```
+
