@@ -19,10 +19,14 @@ feign:
   okhttp:
     enabled: true
 
-  httpclient:
-    connection-timeout: 10
-    connection-timer-repeat: 10
+#  httpclient:
+#    connection-timeout: 10
+#    connection-timer-repeat: 10
   client:
     refresh-enabled: true
+    config:
+      default:
+        connectTimeout: 10000 #单位毫秒
+        readTimeout: 10000 #单位毫秒
 
 
