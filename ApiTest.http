@@ -1,3 +1,13 @@
+POST http://localhost:8082/demo/getGoodsById
+Content-Type: application/x-www-form-urlencoded
+
+id=1
+
+###
+GET http://localhost:8082/demo/getGoodsById?id=1
+Accept: application/json
+
+###
 POST http://localhost:8082/order/create
 Content-Type: application/json
 

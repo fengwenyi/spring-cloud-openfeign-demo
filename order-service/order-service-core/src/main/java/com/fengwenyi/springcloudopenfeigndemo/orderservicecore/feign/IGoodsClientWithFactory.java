@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
  * @since 2021-07-20
  */
-@FeignClient(value = "goods-service", fallbackFactory = GoodsFallbackFactory.class)
+@FeignClient(value = "goods-service", contextId = "goods", fallbackFactory = GoodsFallbackFactory.class)
 public interface IGoodsClientWithFactory extends IGoodsApi {
 }
 

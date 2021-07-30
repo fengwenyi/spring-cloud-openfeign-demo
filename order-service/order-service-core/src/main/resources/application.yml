@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: order-service
-  main:
-    allow-bean-definition-overriding: true
+#  main:
+#    allow-bean-definition-overriding: true
 
 eureka:
   client:
@@ -26,7 +26,7 @@ feign:
     refresh-enabled: true
     config:
       default:
-        connectTimeout: 10000 #单位毫秒
-        readTimeout: 10000 #单位毫秒
+        connectTimeout: 5000 #单位毫秒
+        readTimeout: 20000 #单位毫秒
 
 

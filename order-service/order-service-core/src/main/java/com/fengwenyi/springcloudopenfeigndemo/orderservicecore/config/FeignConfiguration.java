@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
  * @since 2021-07-29
  */
-@Configuration
+//@Configuration
 public class FeignConfiguration {
 
     @Bean
