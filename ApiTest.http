@@ -1,3 +1,7 @@
+
+###
+# 有误
+
 POST http://localhost:8082/demo/getGoodsById
 Content-Type: application/x-www-form-urlencoded
 
@@ -16,5 +20,13 @@ Content-Type: application/json
   "goodsId": 1,
   "goodsNum": 1
 }
+
+###
+
+GET http://localhost:8082/demo/getGoodsById?id=1
+
+###
+
+GET http://localhost:8082/demo/getGoodsByIdUseRestTemplate?id=1
 
 ###
