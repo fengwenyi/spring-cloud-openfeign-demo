@@ -1,7 +1,7 @@
 package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign;
 
 import com.fengwenyi.api.result.IReturnCode;
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.IGoodsApi;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface IGoodsClient {
 
     @GetMapping("/goods/{id}")
-    ResultTemplate<GoodsResponseVo> get(@PathVariable Integer id);
+    ResponseTemplate<GoodsResponseVo> get(@PathVariable Integer id);
 
 }
 
 @Component
 class GoodsFallback implements IGoodsClient {
     @Override
-    public ResultTemplate<GoodsResponseVo> get(Integer id) {
-        return ResultTemplate.fail(IReturnCode.Default.ERROR_SERVICE_CALL_EXCEPTION);
+    public ResponseTemplate<GoodsResponseVo> get(Integer id) {
+        return ResponseTemplate.fail(IReturnCode.Default.SERVICE_CALL_EXCEPTION);
     }
 }

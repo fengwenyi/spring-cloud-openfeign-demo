@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service.impl;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsClient;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.feign.IGoodsClientApi;
@@ -26,11 +26,11 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public ResultTemplate<CreateOrderResponseVo> create(CreateOrderRequestVo requestVo) {
+    public ResponseTemplate<CreateOrderResponseVo> create(CreateOrderRequestVo requestVo) {
 
-        ResultTemplate<GoodsResponseVo> goodsResult = goodsClient.get(requestVo.getGoodsId());
+        ResponseTemplate<GoodsResponseVo> goodsResult = goodsClient.get(requestVo.getGoodsId());
         log.info(goodsResult.toString());
 
-        return ResultTemplate.success();
+        return ResponseTemplate.success();
     }
 }

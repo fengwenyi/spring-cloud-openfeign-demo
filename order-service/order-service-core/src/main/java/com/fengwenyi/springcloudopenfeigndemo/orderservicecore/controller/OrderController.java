@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.controller;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service.IOrderService;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderRequestVo;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderResponseVo;
@@ -23,7 +23,7 @@ public class OrderController {
     private IOrderService orderService;
 
     @PostMapping("/create")
-    public ResultTemplate<CreateOrderResponseVo> create(@RequestBody @Validated CreateOrderRequestVo requestVo) {
+    public ResponseTemplate<CreateOrderResponseVo> create(@RequestBody @Validated CreateOrderRequestVo requestVo) {
         return orderService.create(requestVo);
     }
 

@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,13 +16,13 @@ import java.util.Map;
 public interface IGoodsDemoApi {
 
     @GetMapping("/byId")
-    ResultTemplate<GoodsResponseVo> getById(@RequestParam("id") Integer id);
+    ResponseTemplate<GoodsResponseVo> getById(@RequestParam("id") Integer id);
 
     @GetMapping("/byPriceScope")
 //    ResultTemplate<List<GoodsResponseVo>> getByPriceScope(BigDecimal minPrice, BigDecimal maxPrice);
-    ResultTemplate<List<GoodsResponseVo>> getByPriceScope(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice);
+    ResponseTemplate<List<GoodsResponseVo>> getByPriceScope(@RequestParam BigDecimal minPrice, @RequestParam BigDecimal maxPrice);
 //    ResultTemplate<List<GoodsResponseVo>> getByPriceScope(@RequestParam("minPrice") BigDecimal minPrice, @RequestParam("maxPrice") BigDecimal maxPrice);
 
     @GetMapping("/byMap")
-    ResultTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap);
+    ResponseTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap);
 }

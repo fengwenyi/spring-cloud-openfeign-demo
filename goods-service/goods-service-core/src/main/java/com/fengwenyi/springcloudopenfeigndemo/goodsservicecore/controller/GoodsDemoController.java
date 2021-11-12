@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.controller;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.IGoodsDemoApi;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.service.IGoodsService;
@@ -25,17 +25,17 @@ public class GoodsDemoController implements IGoodsDemoApi {
     }
 
     @Override
-    public ResultTemplate<GoodsResponseVo> getById(Integer id) {
+    public ResponseTemplate<GoodsResponseVo> getById(Integer id) {
         return goodsService.get(id);
     }
 
     @Override
-    public ResultTemplate<List<GoodsResponseVo>> getByPriceScope(BigDecimal minPrice, BigDecimal maxPrice) {
+    public ResponseTemplate<List<GoodsResponseVo>> getByPriceScope(BigDecimal minPrice, BigDecimal maxPrice) {
         return goodsService.getByPriceScope(minPrice, maxPrice);
     }
 
     @Override
-    public ResultTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap) {
+    public ResponseTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap) {
         return goodsService.getByMap(requestMap);
     }
 }

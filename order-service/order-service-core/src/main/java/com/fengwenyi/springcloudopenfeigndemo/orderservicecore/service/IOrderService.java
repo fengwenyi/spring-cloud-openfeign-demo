@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.orderservicecore.service;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderRequestVo;
 import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderResponseVo;
 
@@ -10,6 +10,6 @@ import com.fengwenyi.springcloudopenfeigndemo.orderservicecore.vo.CreateOrderRes
  */
 public interface IOrderService {
 
-    ResultTemplate<CreateOrderResponseVo> create(CreateOrderRequestVo requestVo);
+    ResponseTemplate<CreateOrderResponseVo> create(CreateOrderRequestVo requestVo);
 
 }

@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.controller;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.IGoodsApi;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.service.IGoodsService;
@@ -18,7 +18,7 @@ public class GoodsController implements IGoodsApi {
     private IGoodsService goodsService;
 
     @Override
-    public ResultTemplate<GoodsResponseVo> get(Integer id) {
+    public ResponseTemplate<GoodsResponseVo> get(Integer id) {
         return goodsService.get(id);
     }
 }

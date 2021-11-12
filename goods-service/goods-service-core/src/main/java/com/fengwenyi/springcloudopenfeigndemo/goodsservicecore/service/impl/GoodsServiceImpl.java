@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.service.impl;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 import com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.entity.GoodsEntity;
 import com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.repository.GoodsRepository;
@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +26,7 @@ public class GoodsServiceImpl implements IGoodsService {
     private GoodsRepository goodsRepository;
 
     @Override
-    public ResultTemplate<GoodsResponseVo> get(@NotNull Integer id) {
+    public ResponseTemplate<GoodsResponseVo> get(@NotNull Integer id) {
         /*try {
             TimeUnit.SECONDS.sleep(15);
         } catch (InterruptedException e) {
@@ -36,15 +34,15 @@ public class GoodsServiceImpl implements IGoodsService {
         }*/
         GoodsEntity entity = goodsRepository.findById(id);
         if (entity == null) {
-            return ResultTemplate.success();
+            return ResponseTemplate.success();
         }
         GoodsResponseVo responseVo = new GoodsResponseVo();
         BeanUtils.copyProperties(entity, responseVo);
-        return ResultTemplate.success(responseVo);
+        return ResponseTemplate.success(responseVo);
     }
 
     @Override
-    public ResultTemplate<List<GoodsResponseVo>> getByPriceScope(@NotNull BigDecimal minPrice, @NotNull BigDecimal maxPrice) {
+    public ResponseTemplate<List<GoodsResponseVo>> getByPriceScope(@NotNull BigDecimal minPrice, @NotNull BigDecimal maxPrice) {
         List<GoodsEntity> goodsEntityList = goodsRepository.findAll();
         List<GoodsResponseVo> responseVoList = goodsEntityList.stream().map(entity -> {
             if (entity.getPrice().compareTo(minPrice) > 0 && entity.getPrice().compareTo(maxPrice) < 0) {
@@ -54,11 +52,11 @@ public class GoodsServiceImpl implements IGoodsService {
             }
             return null;
         }).collect(Collectors.toList());
-        return ResultTemplate.success(responseVoList);
+        return ResponseTemplate.success(responseVoList);
     }
 
     @Override
-    public ResultTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap) {
+    public ResponseTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap) {
         BigDecimal minPrice = requestMap.get("minPrice");
         BigDecimal maxPrice = requestMap.get("maxPrice");
         return getByPriceScope(minPrice, maxPrice);

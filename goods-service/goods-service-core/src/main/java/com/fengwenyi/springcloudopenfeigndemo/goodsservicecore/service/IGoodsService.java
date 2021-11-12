@@ -1,6 +1,6 @@
 package com.fengwenyi.springcloudopenfeigndemo.goodsservicecore.service;
 
-import com.fengwenyi.api.result.ResultTemplate;
+import com.fengwenyi.api.result.ResponseTemplate;
 import com.fengwenyi.springcloudopenfeigndemo.goodsserviceapi.vo.GoodsResponseVo;
 
 import java.math.BigDecimal;
@@ -13,9 +13,9 @@ import java.util.Map;
  */
 public interface IGoodsService {
 
-    ResultTemplate<GoodsResponseVo> get(Integer id);
+    ResponseTemplate<GoodsResponseVo> get(Integer id);
 
-    ResultTemplate<List<GoodsResponseVo>> getByPriceScope(BigDecimal minPrice, BigDecimal maxPrice);
+    ResponseTemplate<List<GoodsResponseVo>> getByPriceScope(BigDecimal minPrice, BigDecimal maxPrice);
 
-    ResultTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap);
+    ResponseTemplate<List<GoodsResponseVo>> getByMap(Map<String, BigDecimal> requestMap);
 }
